@@ -1,0 +1,505 @@
+{
+	"info": {
+		"_postman_id": "83a090fa-413f-4fd0-8694-683042a3da3c",
+		"name": "Middleware API",
+		"description": "Postman collection for the DASS-21 Middleware API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37974053"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user2@example.com\",\n    \"password\": \"strongpassword\",\n    \"patient_details\": {\n        \"nik\": \"3210123456780001\",\n        \"name\": \"Rina Sari\",\n        \"birthdate\": \"1998-10-21\",\n        \"gender\": \"female\",\n        \"telecom\": \"081234567890\",\n        \"address\": \"Jl. Merdeka No. 10\"\n    },\n    \"participant_id\": \"participant_xyz\",\n    \"response_id\": \"response_abc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "Registers a new user with patient details, participant ID, and response ID."
+					},
+					"response": [
+						{
+							"name": "Successful Registration",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"strongpassword\",\n    \"patient_details\": {\n        \"nik\": \"3210123456780001\",\n        \"name\": \"Rina Sari\",\n        \"birthdate\": \"1998-10-21\",\n        \"gender\": \"female\",\n        \"telecom\": \"081234567890\",\n        \"address\": \"Jl. Merdeka No. 10\"\n    },\n    \"participant_id\": \"participant_xyz\",\n    \"response_id\": \"response_abc\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": \"user@example.com\",\n    \"patient_details\": {\n        \"nik\": \"3210123456780001\",\n        \"name\": \"Rina Sari\",\n        \"birthdate\": \"1998-10-21\",\n        \"gender\": \"female\",\n        \"telecom\": \"081234567890\",\n        \"address\": \"Jl. Merdeka No. 10\"\n    },\n    \"participant_id\": \"participant_xyz\",\n    \"response_id\": \"response_abc\",\n    \"id\": \"60c72b2f9b1e8a001f8e4caa\",\n    \"created_at\": \"2023-01-01T12:00:00Z\",\n    \"updated_at\": \"2023-01-01T12:00:00Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user2@example.com\",\n    \"password\": \"strongpassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Logs in an existing user and returns an access token."
+					},
+					"response": [
+						{
+							"name": "Successful Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"strongpassword\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiZXhwIjoxNjIzNzgxNjAwfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n    \"token_type\": \"bearer\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMkBleGFtcGxlLmNvbSIsImV4cCI6MTc1NDc4ODY3MH0.ej5mJ63tUFQzyPckRnY4x-zLln1pgC4anmxLb1_GzMI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for user registration and login."
+		},
+		{
+			"name": "DASS-21 Assessment",
+			"item": [
+				{
+					"name": "Process DASS-21 and Get Advice",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMkBleGFtcGxlLmNvbSIsImV4cCI6MTc1NDc4NDQ0N30.9cWT7oOoYgICcrHUGYw6WWYqVoHxSsAkIm5YylS9tVk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"depression\": [0, 1, 2, 3, 0, 1, 2],\n    \"anxiety\": [1, 1, 1, 1, 1, 1, 1],\n    \"stress\": [2, 2, 2, 2, 2, 2, 2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/dass21",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dass21"
+							]
+						},
+						"description": "Submits DASS-21 scores for processing. Returns severity level, message, and detailed advice. If level is severe/extremely, `available_facilities` will also be included in the response."
+					},
+					"response": [
+						{
+							"name": "Successful DASS-21 Processing",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"depression\": [0, 1, 2, 3, 0, 1, 2],\n    \"anxiety\": [1, 1, 1, 1, 1, 1, 1],\n    \"stress\": [2, 2, 2, 2, 2, 2, 2],\n    \"user_id\": \"user123\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/dass21",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"dass21"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"level\": \"moderate\",\n    \"message\": \"Disarankan sesi dengan psikolog.\",\n    \"advice\": \"Anda mengalami gejala tingkat sedang. Sangat disarankan untuk menjadwalkan sesi konsultasi dengan psikolog atau terapis. Terapi perilaku kognitif (CBT) dan pendekatan terapi lainnya bisa sangat efektif untuk kondisi Anda.\",\n    \"available_facilities\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "Endpoints related to DASS-21 psychological assessment."
+		},
+		{
+			"name": "Patient Management (SATUSEHAT)",
+			"item": [
+				{
+					"name": "Register New Patient to SATUSEHAT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMkBleGFtcGxlLmNvbSIsImV4cCI6MTc1NDc4ODY3MH0.ej5mJ63tUFQzyPckRnY4x-zLln1pgC4anmxLb1_GzMI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nik\": \"3171051209960002\",\n  \"name\": \"Siti Aminah\",\n  \"gender\": \"female\",\n  \"birthdate\": \"1996-09-12\",\n  \"address_use\": \"home\",\n  \"address_line\": [\n    \"Jl. Kemuning Raya No.17\"\n  ],\n  \"address_city\": \"Jakarta\",\n  \"address_postal_code\": \"12950\",\n  \"address_country\": \"ID\",\n  \"address_province_code\": \"31\",\n  \"address_city_code\": \"3171\",\n  \"address_district_code\": \"317105\",\n  \"address_village_code\": \"3171051002\",\n  \"address_rt\": \"003\",\n  \"address_rw\": \"004\",\n  \"marital_status_code\": \"S\",\n  \"marital_status_text\": \"Single\",\n  \"contact_relationship_code\": \"N\",\n  \"contact_name_text\": \"Ahmad Yani\",\n  \"contact_telecom_system\": \"phone\",\n  \"contact_telecom_value\": \"082112345678\",\n  \"contact_telecom_use\": \"mobile\",\n  \"communication_language_code\": \"id-ID\",\n  \"communication_language_text\": \"Indonesian\",\n  \"communication_preferred\": true\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/register-patient",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"register-patient"
+							]
+						},
+						"description": "Mencari pasien berdasarkan NIK. Jika tidak ada, mendaftarkan pasien baru. Mengembalikan resource Patient FHIR yang ditemukan atau yang baru dibuat."
+					},
+					"response": [
+						{
+							"name": "Patient Registered Successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nik\": \"3210123456780001\",\n    \"name\": \"Rina Sari\",\n    \"birthdate\": \"1998-10-21\",\n    \"gender\": \"female\",\n    \"telecom\": \"081234567890\",\n    \"address\": \"Jl. Sehat Selalu No. 1\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register-patient",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register-patient"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Pasien berhasil didaftarkan ke SATUSEHAT\",\n    \"patient_id\": \"PATIENT_ID_FROM_SATUSEHAT\",\n    \"resource\": { \n        \"id\": \"PATIENT_ID_FROM_SATUSEHAT\", \n        \"name\": [{\"text\":\"Rina Sari\"}], \n        \"/*\": \"...other patient resource details...\" \n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Visit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMkBleGFtcGxlLmNvbSIsImV4cCI6MTc1NDc4ODY3MH0.ej5mJ63tUFQzyPckRnY4x-zLln1pgC4anmxLb1_GzMI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"patient_id\": \"P20395277777\",\n    \"patient_name\": \"Siti Aminah\",\n    \"location_id\": \"b90f6c16-c226-4c4e-871b-c098bd4effbc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/create-visit",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"create-visit"
+							]
+						},
+						"description": "Membuat resource Encounter (kunjungan) baru untuk pasien yang sudah terdaftar."
+					},
+					"response": [
+						{
+							"name": "Visit Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"patient_id\": \"PATIENT_ID_FROM_SATUSEHAT\",\n    \"patient_name\": \"Budi Santoso\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/create-visit",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"create-visit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Visit successfully created for patient PATIENT_ID_FROM_SATUSEHAT.\",\n    \"encounter_id\": \"ENCOUNTER_ID_FROM_SATUSEHAT\",\n    \"encounter_status\": \"planned\",\n    \"encounter_resource\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Locations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMkBleGFtcGxlLmNvbSIsImV4cCI6MTc1NDc4ODY3MH0.ej5mJ63tUFQzyPckRnY4x-zLln1pgC4anmxLb1_GzMI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"patient_id\": \"P02029533115\",\n    \"patient_name\": \"Budi Santoso\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/locations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for interacting with SATUSEHAT for patient registration and visits."
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "385e80fb-487d-4954-83e9-cfbdfdb26051",
+		"name": "CISTS - Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37974053"
+	},
+	"item": [
+		{
+			"name": "CRUDs",
+			"item": [
+				{
+					"name": "Participant",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"User1\",\n    \"age\": 50,\n    \"gender\": \"Female\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURL}}/crud/participant/save",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"crud",
+										"participant",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/crud/participant/find/1",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"crud",
+										"participant",
+										"find",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"name\": \"User1 - Updated\",\n    \"age\": 50,\n    \"gender\": \"Male\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURL}}/crud/participant/update",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"crud",
+										"participant",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/crud/participant/delete/1",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"crud",
+										"participant",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/crud/participant/find",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"crud",
+										"participant",
+										"find"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Response",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"participantId\": 2,\n    \"responseDate\": \"2023-10-19T09:36:33Z\",\n    \"totalDepressionScore\": 2,\n    \"totalAnxietyScore\": 5,\n    \"totalStressScore\": 13\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURL}}/crud/response/save",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"crud",
+										"response",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/crud/response/find/5",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"crud",
+										"response",
+										"find",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"responseId\": 1,\n    \"participantId\": 1,\n    \"responseDate\": \"2023-10-19T09:36:33Z\",\n    \"totalAnxietyScore\": 0,\n    \"totalDepressionScore\": 0,\n    \"totalStressScore\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURL}}/crud/response/update",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"crud",
+										"response",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/crud/response/delete/1",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"crud",
+										"response",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/crud/response/find",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"crud",
+										"response",
+										"find"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Requirements",
+			"item": [
+				{
+					"name": "Step 4",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"participantId\": 1,\n    \"responseDate\": \"2023-10-19T09:36:33Z\",\n    \"totalDepressionScore\": 3,\n    \"totalAnxietyScore\": 4,\n    \"totalStressScore\": 14\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/requirements/s4",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"requirements",
+								"s4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 5",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/requirements/step5",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"requirements",
+								"step5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 6",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"participantId\": 1,\n    \"name\": \"User1 - Updated\",\n    \"age\": 19,\n    \"gender\": \"Male\",\n    \"responses\": [\n        {\n            \"responseId\": 1,\n            \"responseDate\": \"2023-10-19T09:36:33Z\",\n            \"totalAnxietyScore\": 10,\n            \"totalDepressionScore\": 10,\n            \"totalStressScore\": 10\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/requirements/s6",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"requirements",
+								"s6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 7",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/requirements/s7/1",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"requirements",
+								"s7",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Metrics",
+			"item": [
+				{
+					"name": "Health check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/actuator/health",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseURL",
+			"value": "http://localhost:8080"
+		}
+	]
+}
