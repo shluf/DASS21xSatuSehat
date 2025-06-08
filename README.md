@@ -1,4 +1,4 @@
-# Ringkasan API Middleware DASS-21 & SATUSEHAT
+# API Middleware DASS-21 & SATUSEHAT
 
 ## Gambaran Umum
 Middleware ini berfungsi sebagai jembatan antara sistem asesmen psikologis [DASS-21](https://github.com/shluf/dass21-be) dan platform [SATUSEHAT](https://satusehat.kemkes.go.id/platform/docs/id/playbook/) dari Kementerian Kesehatan. Dibangun menggunakan **FastAPI**, API ini menyediakan serangkaian endpoint untuk mengelola pengguna, memproses hasil tes DASS-21 untuk memberikan saran kesehatan mental, dan berinteraksi dengan API FHIR SATUSEHAT untuk manajemen data pasien.
