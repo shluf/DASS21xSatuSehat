@@ -4,6 +4,8 @@ from src.services.inference import predict_dass
 from src.models.user_models import UserPublic
 from src.models.api_models import DASS21Payload, Recommendation
 from src.core.security import get_current_user
+from src.clients.satusehat_client import get_all_locations_by_org
+from src.core.config import settings
 
 router = APIRouter()
 
@@ -31,7 +33,9 @@ async def process_dass(payload: DASS21Payload, current_user: UserPublic = Depend
         }
 
         if result["level"] in {"severe", "extremely"}:
-            satusehat_faskes = []
+            org_id = settings.ORGANIZATION_ID
+            satusehat_faskes = await get_all_locations_by_org(org_id)
+  
             response["available_facilities"] = [
                 {
                     "id": org["resource"]["id"],

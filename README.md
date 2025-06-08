@@ -43,14 +43,36 @@ Berikut adalah panduan untuk menyiapkan dan menjalankan server middleware di lin
 
 **1. Prasyarat**
 *   Pastikan **Python 3.8+** dan `pip` terinstal di sistem Anda.
-*   Disarankan menggunakan *virtual environment* untuk mengisolasi dependensi proyek.
 
-**2. Instalasi Dependensi**
-   Buka terminal di direktori root proyek, lalu jalankan perintah berikut untuk menginstal semua paket yang dibutuhkan (diasumsikan ada file `requirements.txt`):
+**2. Setup Lingkungan & Instalasi**
+
+   A. **Buat dan Aktifkan Lingkungan Virtual (`venv`)**
+   
+   Sangat disarankan untuk menggunakan lingkungan virtual untuk mengisolasi dependensi proyek. Buka terminal di direktori root proyek dan jalankan perintah berikut:
+
+   1. Buat lingkungan virtual bernama 'venv'
+   ```bash
+   python -m venv venv
+   ```
+
+   2. Aktifkan lingkungan virtual
+   - Untuk Windows (PowerShell/CMD):
+   ```bash
+   .\venv\Scripts\Activate
+   ```
+   
+   - Untuk macOS/Linux (Bash):
+   ```bash
+   source venv/bin/activate
+   ```
+   Setelah diaktifkan, Anda akan melihat `(venv)` di awal baris terminal Anda.
+
+   B. **Instal Dependensi**
+   
+   Dengan lingkungan virtual yang aktif, instal semua paket yang diperlukan menggunakan file `requirements.txt`:
    ```bash
    pip install -r requirements.txt
    ```
-   *Jika file `requirements.txt` tidak ada, Anda perlu menginstalnya secara manual: `pip install fastapi uvicorn python-jose passlib python-multipart pydantic-settings numpy scikit-learn httpx`*
 
 **3. Konfigurasi Environment**
    Buat file bernama `.env` di direktori root proyek. File ini akan berisi semua kredensial dan konfigurasi yang sensitif. Salin dan isi nilai-nilai berikut:
@@ -79,3 +101,6 @@ Berikut adalah panduan untuk menyiapkan dan menjalankan server middleware di lin
 *   `--reload`: Flag ini akan membuat server otomatis restart setiap kali ada perubahan pada kode.
 
 Server API sekarang akan berjalan dan dapat diakses di **http://localhost:8000**. Anda bisa mulai menguji endpoint menggunakan Postman atau alat sejenisnya. 
+
+## Dokumentasi Postman
+   Untuk dokumentasi API nya dapat diakses melalui link berikut https://documenter.getpostman.com/view/37974053/2sB2x3nDD7
