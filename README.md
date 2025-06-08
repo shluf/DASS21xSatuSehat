@@ -1,7 +1,7 @@
 # Ringkasan API Middleware DASS-21 & SATUSEHAT
 
 ## Gambaran Umum
-Middleware ini berfungsi sebagai jembatan antara sistem asesmen psikologis DASS-21 dan platform SATUSEHAT dari Kementerian Kesehatan. Dibangun menggunakan **FastAPI**, API ini menyediakan serangkaian endpoint untuk mengelola pengguna, memproses hasil tes DASS-21 untuk memberikan saran kesehatan mental, dan berinteraksi dengan API FHIR SATUSEHAT untuk manajemen data pasien.
+Middleware ini berfungsi sebagai jembatan antara sistem asesmen psikologis [DASS-21](https://github.com/shluf/dass21-be) dan platform [SATUSEHAT](https://satusehat.kemkes.go.id/platform/docs/id/playbook/) dari Kementerian Kesehatan. Dibangun menggunakan **FastAPI**, API ini menyediakan serangkaian endpoint untuk mengelola pengguna, memproses hasil tes DASS-21 untuk memberikan saran kesehatan mental, dan berinteraksi dengan API FHIR SATUSEHAT untuk manajemen data pasien.
 
 ## Fitur Utama
 *   **Proses DASS-21**: Menerima skor dari 21 pertanyaan DASS, mengklasifikasikan tingkat depresi, kecemasan, dan stres, lalu memberikan saran tindak lanjut yang relevan.
@@ -9,12 +9,18 @@ Middleware ini berfungsi sebagai jembatan antara sistem asesmen psikologis DASS-
 *   **Otentikasi Pengguna**: Menggunakan JWT (JSON Web Tokens) untuk mengamankan endpoint dan memastikan bahwa hanya pengguna terdaftar yang dapat mengakses data sensitif.
 
 ## Struktur Proyek
-Kode diatur secara modular untuk kemudahan pemeliharaan:
-*   `api/routers/`: Berisi logika untuk setiap grup endpoint (`auth_router`, `dass_router`, `patient_router`).
-*   `services/`: Berisi logika bisnis, seperti `inference.py` yang menjalankan model machine learning untuk DASS-21.
-*   `clients/`: Bertanggung jawab untuk komunikasi dengan API eksternal, dalam hal ini `satusehat_client.py`.
-*   `models/`: Berisi definisi model data Pydantic untuk validasi request/response body dan model database.
-*   `core/`: Berisi konfigurasi inti (`config.py`) dan logika keamanan (`security.py`).
+Kode diatur secara modular untuk kemudahan pemeliharaan. Berikut adalah rincian struktur direktori utama:
+
+| Direktori        | Deskripsi                                                                                  |
+|------------------|--------------------------------------------------------------------------------------------|
+| `src/`           | Direktori utama yang berisi semua logika aplikasi.                                         |
+| `src/api/`       | Mengatur *endpoint* API berdasarkan grup fungsionalitas (`auth`, `dass`, `patient`).       |
+| `src/services/`  | Logika bisnis inti, seperti `inference.py` untuk pemrosesan asesmen DASS-21.               |
+| `src/clients/`   | Komunikasi dengan API eksternal, seperti `satusehat_client.py` untuk interaksi SATUSEHAT. |
+| `src/models/`    | Definisi model data Pydantic untuk validasi dan skema database.                            |
+| `src/core/`      | Konfigurasi aplikasi (`config.py`) dan manajemen keamanan (`security.py`).                 |
+| `src/db.py`      | Konfigurasi dan inisialisasi koneksi database.                                             |
+| `main.py`        | Titik masuk utama aplikasi FastAPI.                                                        |
 
 ---
 
@@ -90,6 +96,7 @@ Berikut adalah panduan untuk menyiapkan dan menjalankan server middleware di lin
    JWT_SECRET_KEY=SECRET_KEY_UNTUK_ENKRIPSI_TOKEN_ANDA
    JWT_ALGORITHM=HS256
    ```
+   Untuk mendapatkan CLIENT_ID, CLIENT_SECRET, dan ORGANIZATION_ID dapat dilakukan dengan membuat akun di laman [Satu sehat](https://satusehat.kemkes.go.id/platform/login), untuk lebih lengkapnya dapat dilihat di [Panduan Daftar Akun Satu Sehat](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/registration/#registration). 
 
 **4. Jalankan Server**
    Setelah semua dependensi terinstal dan file `.env` terkonfigurasi, jalankan server menggunakan Uvicorn dari direktori root:
